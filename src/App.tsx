@@ -1,4 +1,5 @@
 import React from 'react'
+import TaskList from './components/TaskList'
 
 function App() {
   return (
@@ -15,10 +16,7 @@ function App() {
           {/* Daily Task Planner */}
           <div className="bg-white rounded-xl p-6 shadow-lg">
             <h2 className="text-2xl font-semibold text-gray-800 mb-4">Today's Tasks</h2>
-            <div className="space-y-3">
-              <p className="text-gray-500">Task planner will go here...</p>
-              {/* Placeholder for Task List component */}
-            </div>
+            <TaskList />
           </div>
 
           {/* Mood Tracker */}
