@@ -13,7 +13,7 @@ import {
   Pie,
   Cell,
 } from 'recharts';
-import type { Task, MoodEntry, MoodType } from '../types';
+import type { MoodType } from '../types';
 import { getAllTasks, getAllMoodEntries } from '../utils/localStorage';
 
 interface DailyData {

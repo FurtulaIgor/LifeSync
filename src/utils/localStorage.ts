@@ -5,9 +5,6 @@ import type {
   MoodFilter,
   AppSettings,
   StorageKey,
-  WeeklyAnalytics,
-  DailyStats,
-  MoodType,
 } from '../types';
 import { STORAGE_KEYS } from '../types';
 

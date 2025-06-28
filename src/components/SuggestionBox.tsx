@@ -46,14 +46,12 @@ const SuggestionBox: React.FC = () => {
       ? todaysMoods.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())[0]
       : null;
     
-    const averageMoodIntensity = todaysMoods.length > 0
-      ? todaysMoods.reduce((sum, mood) => sum + mood.intensity, 0) / todaysMoods.length
-      : 3;
+
 
     // Generate suggestions
     const newSuggestions: SuggestionData = {
       motivational: generateMotivationalSuggestions(completionRate, latestMood),
-      productivity: generateProductivitySuggestions(todaysTasks, completionRate),
+      productivity: generateProductivitySuggestions(todaysTasks),
       wellness: generateWellnessSuggestions(latestMood, todaysMoods),
       taskPriority: generateTaskPrioritySuggestions(todaysTasks, latestMood),
     };
@@ -107,7 +105,7 @@ const SuggestionBox: React.FC = () => {
     return suggestions.slice(0, 2);
   };
 
-  const generateProductivitySuggestions = (tasks: Task[], completionRate: number): Suggestion[] => {
+  const generateProductivitySuggestions = (tasks: Task[]): Suggestion[] => {
     const suggestions: Suggestion[] = [];
     const pendingHighPriority = tasks.filter(task => !task.completed && task.priority === 'high').length;
 

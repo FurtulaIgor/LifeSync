@@ -1,12 +1,15 @@
-import React from 'react'
 import TaskList from './components/TaskList'
 import MoodTracker from './components/MoodTracker'
 import SuggestionBox from './components/SuggestionBox'
 import WeeklyAnalytics from './components/WeeklyAnalytics'
+import ResponsiveTestSuite from './components/ResponsiveTestSuite'
 
 function App() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-100 to-purple-100 p-4">
+      {/* Development Breakpoint Indicator */}
+      <div className="lifesync-breakpoint-indicator"></div>
+      
       <div className="lifesync-container">
         {/* Header */}
         <header className="text-center mb-8 lifesync-fade-in">
@@ -45,6 +48,9 @@ function App() {
           <p>Built with React, TypeScript, and Tailwind CSS</p>
         </footer>
       </div>
+
+      {/* Responsive Testing Suite */}
+      <ResponsiveTestSuite />
     </div>
   )
 }

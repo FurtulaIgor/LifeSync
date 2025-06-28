@@ -1,13 +1,21 @@
 {
   "name": "lifesync-app",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "build:analyze": "tsc -b && vite build --mode analyze",
+    "preview": "vite preview",
+    "preview:production": "vite preview --port 4173 --host",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "lint:fix": "eslint . --fix",
+    "type-check": "tsc -b --noEmit",
+    "deploy:vercel": "vercel --prod",
+    "deploy:netlify": "netlify deploy --prod --dir dist",
+    "clean": "rm -rf dist node_modules/.vite",
+    "health-check": "npm run type-check && npm run lint && npm run build"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.11",
@@ -28,5 +36,9 @@
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.34.1",
     "vite": "^7.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
   }
 }

@@ -92,6 +92,9 @@
   --transition-fast: 150ms ease-in-out;
   --transition-normal: 200ms ease-in-out;
   --transition-slow: 300ms ease-in-out;
+
+  /* Touch Targets (44px minimum for accessibility) */
+  --touch-target-min: 44px;
 }
 
 /* =========================
@@ -116,6 +119,13 @@
   @apply p-6;
 }
 
+/* Mobile-optimized card body */
+@media (max-width: 640px) {
+  .lifesync-card-body {
+    @apply p-4;
+  }
+}
+
 .lifesync-card-footer {
   @apply px-6 py-4 border-t border-gray-100 bg-gray-50;
 }
@@ -125,6 +135,8 @@
   @apply px-4 py-2 rounded-lg font-medium transition-all duration-200;
   @apply focus:outline-none focus:ring-2 focus:ring-offset-2;
   @apply disabled:opacity-50 disabled:cursor-not-allowed;
+  min-height: var(--touch-target-min);
+  min-width: var(--touch-target-min);
 }
 
 .lifesync-btn-primary {
@@ -149,10 +161,24 @@
 
 .lifesync-btn-sm {
   @apply px-3 py-1.5 text-sm;
+  min-height: 36px; /* Slightly smaller but still touch-friendly */
 }
 
 .lifesync-btn-lg {
   @apply px-6 py-3 text-lg;
+  min-height: 52px;
+}
+
+/* Mobile button optimizations */
+@media (max-width: 640px) {
+  .lifesync-btn {
+    @apply py-3 px-6; /* Larger touch targets on mobile */
+  }
+  
+  .lifesync-btn-sm {
+    @apply py-2 px-4;
+    min-height: 40px;
+  }
 }
 
 /* Input Components */
@@ -160,12 +186,26 @@
   @apply w-full px-3 py-2 border border-gray-300 rounded-lg;
   @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent;
   @apply transition-all duration-200;
+  min-height: var(--touch-target-min);
 }
 
 .lifesync-textarea {
   @apply w-full px-3 py-2 border border-gray-300 rounded-lg;
   @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent;
   @apply transition-all duration-200 resize-none;
+  min-height: 80px;
+}
+
+/* Mobile input optimizations */
+@media (max-width: 640px) {
+  .lifesync-input {
+    @apply py-3 text-base; /* Prevent zoom on iOS */
+  }
+  
+  .lifesync-textarea {
+    @apply py-3 text-base;
+    min-height: 100px;
+  }
 }
 
 /* Badge Components */
@@ -208,6 +248,17 @@
   @apply flex flex-col items-center gap-2;
   @apply hover:scale-105 hover:shadow-md;
   @apply focus:outline-none focus:ring-2 focus:ring-offset-2;
+  min-height: var(--touch-target-min);
+  min-width: var(--touch-target-min);
+}
+
+/* Mobile mood button optimizations */
+@media (max-width: 640px) {
+  .lifesync-mood-btn {
+    @apply p-3;
+    min-height: 48px;
+    min-width: 48px;
+  }
 }
 
 /* Tab Components */
@@ -218,6 +269,7 @@
 .lifesync-tab {
   @apply px-3 py-1 rounded-md text-xs font-medium transition-all duration-200;
   @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500;
+  min-height: 36px;
 }
 
 .lifesync-tab-active {
@@ -226,6 +278,19 @@
 
 .lifesync-tab-inactive {
   @apply text-gray-600 hover:text-gray-800;
+}
+
+/* Mobile tab optimizations */
+@media (max-width: 640px) {
+  .lifesync-tabs {
+    @apply space-x-0.5 p-0.5;
+  }
+  
+  .lifesync-tab {
+    @apply px-2 py-2 text-xs;
+    min-height: 40px;
+    min-width: 60px;
+  }
 }
 
 /* Loading States */
@@ -251,7 +316,7 @@
 }
 
 .lifesync-heading-4 {
-  @apply text-md font-semibold text-gray-800;
+  @apply text-base font-semibold text-gray-800;
 }
 
 .lifesync-body {
@@ -264,6 +329,25 @@
 
 .lifesync-caption {
   @apply text-xs text-gray-500;
+}
+
+/* Mobile typography optimizations */
+@media (max-width: 640px) {
+  .lifesync-heading-1 {
+    @apply text-3xl;
+  }
+  
+  .lifesync-heading-2 {
+    @apply text-xl;
+  }
+  
+  .lifesync-heading-3 {
+    @apply text-lg;
+  }
+  
+  .lifesync-body {
+    @apply text-base leading-relaxed;
+  }
 }
 
 /* Status Indicators */
@@ -288,12 +372,39 @@
   @apply max-w-6xl mx-auto px-4;
 }
 
+/* Mobile container optimizations */
+@media (max-width: 640px) {
+  .lifesync-container {
+    @apply px-2;
+  }
+}
+
 .lifesync-grid-main {
   @apply grid grid-cols-1 lg:grid-cols-3 gap-6;
 }
 
+/* Mobile grid optimizations */
+@media (max-width: 1024px) {
+  .lifesync-grid-main {
+    @apply gap-4;
+  }
+}
+
+@media (max-width: 640px) {
+  .lifesync-grid-main {
+    @apply gap-3;
+  }
+}
+
 .lifesync-section {
   @apply space-y-6;
+}
+
+/* Mobile section optimizations */
+@media (max-width: 640px) {
+  .lifesync-section {
+    @apply space-y-4;
+  }
 }
 
 /* Animation Classes */
@@ -355,5 +466,58 @@
 @media (min-width: 1280px) {
   .lifesync-breakpoint-indicator::before {
     content: 'XL';
+  }
+}
+
+/* =========================
+   ACCESSIBILITY IMPROVEMENTS
+   ========================= */
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .lifesync-card {
+    @apply border-2 border-gray-400;
+  }
+  
+  .lifesync-btn {
+    @apply border-2;
+  }
+  
+  .lifesync-btn-primary {
+    @apply border-blue-700;
+  }
+  
+  .lifesync-btn-secondary {
+    @apply border-gray-600;
+  }
+}
+
+/* Focus improvements for keyboard navigation */
+.lifesync-btn:focus-visible,
+.lifesync-input:focus-visible,
+.lifesync-textarea:focus-visible,
+.lifesync-tab:focus-visible,
+.lifesync-mood-btn:focus-visible {
+  @apply outline-2 outline-offset-2 outline-blue-500;
+}
+
+/* Print optimizations */
+@media print {
+  .lifesync-breakpoint-indicator,
+  .lifesync-btn,
+  .lifesync-tabs {
+    display: none !important;
+  }
+  
+  .lifesync-card {
+    @apply shadow-none border border-gray-300;
+    break-inside: avoid;
+  }
+  
+  .lifesync-heading-1,
+  .lifesync-heading-2,
+  .lifesync-heading-3,
+  .lifesync-heading-4 {
+    break-after: avoid;
   }
 } 
