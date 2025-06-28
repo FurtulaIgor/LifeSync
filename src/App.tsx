@@ -1,5 +1,6 @@
 import React from 'react'
 import TaskList from './components/TaskList'
+import MoodTracker from './components/MoodTracker'
 
 function App() {
   return (
@@ -22,10 +23,7 @@ function App() {
           {/* Mood Tracker */}
           <div className="bg-white rounded-xl p-6 shadow-lg">
             <h2 className="text-2xl font-semibold text-gray-800 mb-4">How are you feeling?</h2>
-            <div className="space-y-3">
-              <p className="text-gray-500">Mood tracker will go here...</p>
-              {/* Placeholder for Mood Button Set component */}
-            </div>
+            <MoodTracker />
           </div>
 
           {/* Insights & Suggestions */}
