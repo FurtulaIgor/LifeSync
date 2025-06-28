@@ -257,8 +257,8 @@ const SuggestionBox: React.FC = () => {
 
   const getTabLabel = (tab: keyof SuggestionData): string => {
     switch (tab) {
-      case 'motivational': return 'Motivation';
-      case 'productivity': return 'Productivity';
+      case 'motivational': return 'Motivate';
+      case 'productivity': return 'Focus';
       case 'wellness': return 'Wellness';
       case 'taskPriority': return 'Tasks';
       default: return 'Tips';
@@ -268,20 +268,20 @@ const SuggestionBox: React.FC = () => {
   return (
     <div className="space-y-4">
       {/* Tab Navigation */}
-      <div className="flex space-x-1 bg-gray-100 p-1 rounded-lg">
+      <div className="flex space-x-1 bg-gray-100 p-1 rounded-lg overflow-hidden">
         {Object.keys(suggestions).map((tab) => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab as keyof SuggestionData)}
-            className={`flex-1 py-3 px-1 rounded-md text-xs font-medium transition-all duration-200 ${
+            className={`flex-1 min-w-0 py-2 px-1 rounded-md text-xs font-medium transition-all duration-200 ${
               activeTab === tab
                 ? 'bg-white text-blue-600 shadow-sm'
                 : 'text-gray-600 hover:text-gray-800'
             }`}
           >
-            <div className="flex flex-col items-center justify-center gap-1">
-              <span className="text-lg leading-none">{getTabIcon(tab as keyof SuggestionData)}</span>
-              <span className="text-xs leading-tight whitespace-nowrap">{getTabLabel(tab as keyof SuggestionData)}</span>
+            <div className="flex flex-col items-center justify-center gap-0.5">
+              <span className="text-base leading-none">{getTabIcon(tab as keyof SuggestionData)}</span>
+              <span className="text-xs leading-none truncate w-full text-center">{getTabLabel(tab as keyof SuggestionData)}</span>
             </div>
           </button>
         ))}
