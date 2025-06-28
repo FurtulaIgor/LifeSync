@@ -273,15 +273,15 @@ const SuggestionBox: React.FC = () => {
           <button
             key={tab}
             onClick={() => setActiveTab(tab as keyof SuggestionData)}
-            className={`flex-1 py-2 px-2 rounded-md text-xs font-medium transition-all duration-200 ${
+            className={`flex-1 py-3 px-1 rounded-md text-xs font-medium transition-all duration-200 ${
               activeTab === tab
                 ? 'bg-white text-blue-600 shadow-sm'
                 : 'text-gray-600 hover:text-gray-800'
             }`}
           >
-            <div className="flex flex-col items-center gap-1">
-              <span>{getTabIcon(tab as keyof SuggestionData)}</span>
-              <span className="hidden sm:block">{getTabLabel(tab as keyof SuggestionData)}</span>
+            <div className="flex flex-col items-center justify-center gap-1">
+              <span className="text-lg leading-none">{getTabIcon(tab as keyof SuggestionData)}</span>
+              <span className="text-xs leading-tight whitespace-nowrap">{getTabLabel(tab as keyof SuggestionData)}</span>
             </div>
           </button>
         ))}
