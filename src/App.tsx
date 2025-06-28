@@ -1,0 +1,52 @@
+import React from 'react'
+
+function App() {
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-blue-100 to-purple-100 p-4">
+      <div className="max-w-6xl mx-auto">
+        {/* Header */}
+        <header className="text-center mb-8">
+          <h1 className="text-4xl font-bold text-gray-800 mb-2">LifeSync</h1>
+          <p className="text-gray-600">Your personal productivity and wellness companion</p>
+        </header>
+
+        {/* Main Content Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Daily Task Planner */}
+          <div className="bg-white rounded-xl p-6 shadow-lg">
+            <h2 className="text-2xl font-semibold text-gray-800 mb-4">Today's Tasks</h2>
+            <div className="space-y-3">
+              <p className="text-gray-500">Task planner will go here...</p>
+              {/* Placeholder for Task List component */}
+            </div>
+          </div>
+
+          {/* Mood Tracker */}
+          <div className="bg-white rounded-xl p-6 shadow-lg">
+            <h2 className="text-2xl font-semibold text-gray-800 mb-4">How are you feeling?</h2>
+            <div className="space-y-3">
+              <p className="text-gray-500">Mood tracker will go here...</p>
+              {/* Placeholder for Mood Button Set component */}
+            </div>
+          </div>
+
+          {/* Insights & Suggestions */}
+          <div className="bg-white rounded-xl p-6 shadow-lg">
+            <h2 className="text-2xl font-semibold text-gray-800 mb-4">Insights & Tips</h2>
+            <div className="space-y-3">
+              <p className="text-gray-500">Suggestions and analytics will go here...</p>
+              {/* Placeholder for Suggestion Box and Analytics components */}
+            </div>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <footer className="text-center mt-8 text-gray-500">
+          <p>Built with React, TypeScript, and Tailwind CSS</p>
+        </footer>
+      </div>
+    </div>
+  )
+}
+
+export default App
