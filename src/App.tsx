@@ -2,6 +2,7 @@ import React from 'react'
 import TaskList from './components/TaskList'
 import MoodTracker from './components/MoodTracker'
 import SuggestionBox from './components/SuggestionBox'
+import WeeklyAnalytics from './components/WeeklyAnalytics'
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
         </header>
 
         {/* Main Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
           {/* Daily Task Planner */}
           <div className="bg-white rounded-xl p-6 shadow-lg">
             <h2 className="text-2xl font-semibold text-gray-800 mb-4">Today's Tasks</h2>
@@ -32,6 +33,11 @@ function App() {
             <h2 className="text-2xl font-semibold text-gray-800 mb-4">Insights & Tips</h2>
             <SuggestionBox />
           </div>
+        </div>
+
+        {/* Weekly Analytics Section */}
+        <div className="bg-white rounded-xl p-6 shadow-lg mb-6">
+          <WeeklyAnalytics />
         </div>
 
         {/* Footer */}
