@@ -2,12 +2,12 @@
 
 ## Setup & Infrastructure
 
-### [ ] **[Easy]** Project Initialization
-- [ ] Set up a new project using Vite with React and TypeScript
-- [ ] Initialize version control with Git
-- [ ] Install and configure Tailwind CSS v4
-  - [ ] Use this: npm install tailwindcss @tailwindcss/vite
-  - [ ] Add the @tailwindcss/vite plugin to your Vite configuration: 
+### [x] **[Easy]** Project Initialization
+- [x] Set up a new project using Vite with React and TypeScript
+- [x] Initialize version control with Git
+- [x] Install and configure Tailwind CSS v4
+  - [x] Use this: npm install tailwindcss @tailwindcss/vite
+  - [x] Add the @tailwindcss/vite plugin to your Vite configuration: 
         import { defineConfig } from 'vite'
 import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
@@ -15,13 +15,13 @@ export default defineConfig({
     tailwindcss(),
   ],
 })
-- [ ] Create a basic project structure (components, styles, pages folders)
-- [ ] Add README with project details and setup instructions
+- [x] Create a basic project structure (components, styles, pages folders)
+- [x] Add README with project details and setup instructions
 
-### [ ] **[Easy]** Local Storage Utility Setup
-- [ ] Create a utility module for managing data in local storage
-- [ ] Implement functions for saving, updating, deleting, and fetching task and mood data
-- [ ] Write documentation/comments for utility functions
+### [x] **[Easy]** Local Storage Utility Setup
+- [x] Create a utility module for managing data in local storage
+- [x] Implement functions for saving, updating, deleting, and fetching task and mood data
+- [x] Write documentation/comments for utility functions
 
 ## Core Features
 
@@ -61,9 +61,9 @@ export default defineConfig({
 
 ## UI/UX Design
 
-### [ ] **[Easy]** Layout and Responsive Design
-- [ ] Define the overall layout structure with three main sections: Planner, Mood Tracker, and Insights
-- [ ] Use Tailwind CSS to style components with a modern, pastel-themed, rounded design
+### [x] **[Easy]** Layout and Responsive Design
+- [x] Define the overall layout structure with three main sections: Planner, Mood Tracker, and Insights
+- [x] Use Tailwind CSS to style components with a modern, pastel-themed, rounded design
 - [ ] Ensure responsive design using media queries for different devices
 - [ ] Testing: Manually verify layout on desktop and mobile views
 
@@ -86,9 +86,9 @@ export default defineConfig({
 
 ## Deployment
 
-### [ ] **[Easy]** Development Build & Local Deployment
-- [ ] Set up development server (using Vite) and run the application locally
-- [ ] Test the application in a local environment and address any issues
+### [x] **[Easy]** Development Build & Local Deployment
+- [x] Set up development server (using Vite) and run the application locally
+- [x] Test the application in a local environment and address any issues
 
 ### [ ] **[Medium]** Production Deployment Preparation
 - [ ] Configure build scripts for production
@@ -98,4 +98,9 @@ export default defineConfig({
 
 ### [ ] **[Easy]** Post-Deployment Monitoring
 - [ ] Set up basic error logging (console logs or a monitoring tool) to track issues
-- [ ] Monitor usage to ensure features perform as expected 
+- [ ] Monitor usage to ensure features perform as expected
+
+## Progress Summary
+**Completed Tasks:** 2 major sections + partial UI/UX + deployment setup
+**Next Priority:** Daily Task Planner (Medium difficulty)
+**Overall Progress:** ~25% complete 
