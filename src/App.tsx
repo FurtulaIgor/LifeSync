@@ -1,6 +1,7 @@
 import React from 'react'
 import TaskList from './components/TaskList'
 import MoodTracker from './components/MoodTracker'
+import SuggestionBox from './components/SuggestionBox'
 
 function App() {
   return (
@@ -29,10 +30,7 @@ function App() {
           {/* Insights & Suggestions */}
           <div className="bg-white rounded-xl p-6 shadow-lg">
             <h2 className="text-2xl font-semibold text-gray-800 mb-4">Insights & Tips</h2>
-            <div className="space-y-3">
-              <p className="text-gray-500">Suggestions and analytics will go here...</p>
-              {/* Placeholder for Suggestion Box and Analytics components */}
-            </div>
+            <SuggestionBox />
           </div>
         </div>
 
