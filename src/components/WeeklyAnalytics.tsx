@@ -226,8 +226,8 @@ const WeeklyAnalytics: React.FC = () => {
   if (isLoading) {
     return (
       <div className="text-center py-8">
-        <div className="animate-spin text-3xl mb-4">📊</div>
-        <p className="text-gray-500">Analyzing your weekly data...</p>
+        <div className="lifesync-loading text-3xl mb-4">📊</div>
+        <p className="lifesync-body">Analyzing your weekly data...</p>
       </div>
     );
   }
@@ -236,24 +236,24 @@ const WeeklyAnalytics: React.FC = () => {
     return (
       <div className="text-center py-8">
         <div className="text-3xl mb-4">📈</div>
-        <p className="text-gray-500">No data available for analysis.</p>
-        <p className="text-sm text-gray-400 mt-2">Start tracking tasks and moods to see insights!</p>
+        <p className="lifesync-body">No data available for analysis.</p>
+        <p className="lifesync-body-sm mt-2">Start tracking tasks and moods to see insights!</p>
       </div>
     );
   }
 
   return (
-    <div className="space-y-6">
+    <div className="lifesync-section">
       {/* Header with View Mode Selector */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h3 className="text-lg font-semibold text-gray-800">Weekly Analytics</h3>
-          <p className="text-sm text-gray-600">
+          <h3 className="lifesync-heading-3">Weekly Analytics</h3>
+          <p className="lifesync-body-sm">
             {formatDate(weeklyData.weekStart)} - {formatDate(weeklyData.weekEnd)}
           </p>
         </div>
         
-        <div className="flex space-x-1 bg-gray-100 p-1 rounded-lg">
+        <div className="lifesync-tabs">
           {[
             { key: 'overview', label: 'Overview', icon: '📊' },
             { key: 'productivity', label: 'Tasks', icon: '✅' },
@@ -262,10 +262,10 @@ const WeeklyAnalytics: React.FC = () => {
             <button
               key={key}
               onClick={() => setViewMode(key as typeof viewMode)}
-              className={`px-3 py-1 rounded-md text-xs font-medium transition-all duration-200 ${
+              className={`lifesync-tab ${
                 viewMode === key
-                  ? 'bg-white text-blue-600 shadow-sm'
-                  : 'text-gray-600 hover:text-gray-800'
+                  ? 'lifesync-tab-active'
+                  : 'lifesync-tab-inactive'
               }`}
             >
               <span className="mr-1">{icon}</span>
@@ -278,42 +278,42 @@ const WeeklyAnalytics: React.FC = () => {
       {/* Weekly Summary Cards */}
       {viewMode === 'overview' && (
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-          <div className="bg-blue-50 rounded-lg p-4">
-            <div className="text-sm font-medium text-blue-800">Avg Completion Rate</div>
+          <div className="bg-blue-50 rounded-lg p-4 lifesync-fade-in">
+            <div className="lifesync-caption text-blue-800 font-medium">Avg Completion Rate</div>
             <div className="text-2xl font-bold text-blue-900">{weeklyData.weeklyAverages.completionRate}%</div>
-            <div className={`text-xs ${getTrendColor(weeklyData.trends.productivityTrend)}`}>
+            <div className={`lifesync-caption ${getTrendColor(weeklyData.trends.productivityTrend)}`}>
               {getTrendIcon(weeklyData.trends.productivityTrend)} {weeklyData.trends.productivityTrend}
             </div>
           </div>
           
-          <div className="bg-green-50 rounded-lg p-4">
-            <div className="text-sm font-medium text-green-800">Avg Mood</div>
+          <div className="bg-green-50 rounded-lg p-4 lifesync-fade-in" style={{ animationDelay: '0.1s' }}>
+            <div className="lifesync-caption text-green-800 font-medium">Avg Mood</div>
             <div className="text-2xl font-bold text-green-900">{weeklyData.weeklyAverages.averageMoodIntensity}/5</div>
-            <div className={`text-xs ${getTrendColor(weeklyData.trends.moodTrend)}`}>
+            <div className={`lifesync-caption ${getTrendColor(weeklyData.trends.moodTrend)}`}>
               {getTrendIcon(weeklyData.trends.moodTrend)} {weeklyData.trends.moodTrend}
             </div>
           </div>
           
-          <div className="bg-purple-50 rounded-lg p-4">
-            <div className="text-sm font-medium text-purple-800">Tasks/Day</div>
+          <div className="bg-purple-50 rounded-lg p-4 lifesync-fade-in" style={{ animationDelay: '0.2s' }}>
+            <div className="lifesync-caption text-purple-800 font-medium">Tasks/Day</div>
             <div className="text-2xl font-bold text-purple-900">{weeklyData.weeklyAverages.tasksPerDay}</div>
-            <div className="text-xs text-purple-600">average</div>
+            <div className="lifesync-caption text-purple-600">average</div>
           </div>
           
-          <div className="bg-yellow-50 rounded-lg p-4">
-            <div className="text-sm font-medium text-yellow-800">Mood Entries</div>
+          <div className="bg-yellow-50 rounded-lg p-4 lifesync-fade-in" style={{ animationDelay: '0.3s' }}>
+            <div className="lifesync-caption text-yellow-800 font-medium">Mood Entries</div>
             <div className="text-2xl font-bold text-yellow-900">{weeklyData.weeklyAverages.moodEntriesPerDay}</div>
-            <div className="text-xs text-yellow-600">per day</div>
+            <div className="lifesync-caption text-yellow-600">per day</div>
           </div>
         </div>
       )}
 
       {/* Charts */}
-      <div className="bg-white rounded-lg p-4 border">
+      <div className="lifesync-card bg-white rounded-lg p-4 border">
         {viewMode === 'overview' && (
           <div className="space-y-6">
             <div>
-              <h4 className="text-md font-semibold text-gray-800 mb-4">Daily Trends</h4>
+              <h4 className="lifesync-heading-4 mb-4">Daily Trends</h4>
               <ResponsiveContainer width="100%" height={200}>
                 <LineChart data={weeklyData.dailyData}>
                   <CartesianGrid strokeDasharray="3 3" />
@@ -345,7 +345,7 @@ const WeeklyAnalytics: React.FC = () => {
 
         {viewMode === 'productivity' && (
           <div>
-            <h4 className="text-md font-semibold text-gray-800 mb-4">Task Completion</h4>
+            <h4 className="lifesync-heading-4 mb-4">Task Completion</h4>
             <ResponsiveContainer width="100%" height={250}>
               <BarChart data={weeklyData.dailyData}>
                 <CartesianGrid strokeDasharray="3 3" />
@@ -362,7 +362,7 @@ const WeeklyAnalytics: React.FC = () => {
         {viewMode === 'mood' && (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <div>
-              <h4 className="text-md font-semibold text-gray-800 mb-4">Daily Mood Intensity</h4>
+              <h4 className="lifesync-heading-4 mb-4">Daily Mood Intensity</h4>
               <ResponsiveContainer width="100%" height={200}>
                 <LineChart data={weeklyData.dailyData}>
                   <CartesianGrid strokeDasharray="3 3" />
@@ -382,7 +382,7 @@ const WeeklyAnalytics: React.FC = () => {
             
             {weeklyData.moodDistribution.length > 0 && (
               <div>
-                <h4 className="text-md font-semibold text-gray-800 mb-4">Mood Distribution</h4>
+                <h4 className="lifesync-heading-4 mb-4">Mood Distribution</h4>
                 <ResponsiveContainer width="100%" height={200}>
                   <PieChart>
                     <Pie
@@ -400,7 +400,7 @@ const WeeklyAnalytics: React.FC = () => {
                     <Tooltip />
                   </PieChart>
                 </ResponsiveContainer>
-                <div className="grid grid-cols-2 gap-1 mt-2 text-xs">
+                <div className="grid grid-cols-2 gap-1 mt-2 lifesync-caption">
                   {weeklyData.moodDistribution.slice(0, 6).map((item) => (
                     <div key={item.mood} className="flex items-center gap-1">
                       <div 
@@ -423,7 +423,7 @@ const WeeklyAnalytics: React.FC = () => {
         <button
           onClick={generateWeeklyAnalytics}
           disabled={isLoading}
-          className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:opacity-50 transition-colors duration-200"
+          className="lifesync-btn lifesync-btn-primary"
         >
           🔄 Refresh Analytics
         </button>

@@ -1,0 +1,359 @@
+/* LifeSync Design System */
+
+/* =========================
+   COLOR PALETTE
+   ========================= */
+:root {
+  /* Primary Brand Colors */
+  --color-primary-50: #eff6ff;
+  --color-primary-100: #dbeafe;
+  --color-primary-500: #3b82f6;
+  --color-primary-600: #2563eb;
+  --color-primary-700: #1d4ed8;
+
+  /* Secondary Colors */
+  --color-secondary-50: #f3e8ff;
+  --color-secondary-100: #e9d5ff;
+  --color-secondary-500: #8b5cf6;
+  --color-secondary-600: #7c3aed;
+
+  /* Semantic Colors */
+  --color-success-50: #ecfdf5;
+  --color-success-100: #d1fae5;
+  --color-success-500: #10b981;
+  --color-success-600: #059669;
+
+  --color-warning-50: #fffbeb;
+  --color-warning-100: #fef3c7;
+  --color-warning-500: #f59e0b;
+  --color-warning-600: #d97706;
+
+  --color-error-50: #fef2f2;
+  --color-error-100: #fee2e2;
+  --color-error-500: #ef4444;
+  --color-error-600: #dc2626;
+
+  /* Neutral Colors */
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-gray-600: #4b5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2937;
+  --color-gray-900: #111827;
+
+  /* Mood Colors - Standardized */
+  --mood-happy: #fcd34d;
+  --mood-excited: #fb923c;
+  --mood-calm: #60a5fa;
+  --mood-motivated: #34d399;
+  --mood-confident: #a78bfa;
+  --mood-tired: #9ca3af;
+  --mood-stressed: #f87171;
+  --mood-anxious: #fde047;
+  --mood-sad: #93c5fd;
+  --mood-overwhelmed: #ef4444;
+
+  /* Typography */
+  --font-family-primary: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+
+  /* Spacing Scale */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+
+  /* Border Radius */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+
+  /* Transitions */
+  --transition-fast: 150ms ease-in-out;
+  --transition-normal: 200ms ease-in-out;
+  --transition-slow: 300ms ease-in-out;
+}
+
+/* =========================
+   COMPONENT PATTERNS
+   ========================= */
+
+/* Card Components */
+.lifesync-card {
+  @apply bg-white rounded-xl shadow-lg border border-gray-100;
+  @apply transition-all duration-200;
+}
+
+.lifesync-card:hover {
+  @apply shadow-xl;
+}
+
+.lifesync-card-header {
+  @apply px-6 py-4 border-b border-gray-100;
+}
+
+.lifesync-card-body {
+  @apply p-6;
+}
+
+.lifesync-card-footer {
+  @apply px-6 py-4 border-t border-gray-100 bg-gray-50;
+}
+
+/* Button Components */
+.lifesync-btn {
+  @apply px-4 py-2 rounded-lg font-medium transition-all duration-200;
+  @apply focus:outline-none focus:ring-2 focus:ring-offset-2;
+  @apply disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+.lifesync-btn-primary {
+  @apply bg-blue-500 text-white hover:bg-blue-600;
+  @apply focus:ring-blue-500;
+}
+
+.lifesync-btn-secondary {
+  @apply bg-gray-100 text-gray-700 hover:bg-gray-200;
+  @apply focus:ring-gray-500;
+}
+
+.lifesync-btn-success {
+  @apply bg-green-500 text-white hover:bg-green-600;
+  @apply focus:ring-green-500;
+}
+
+.lifesync-btn-danger {
+  @apply bg-red-500 text-white hover:bg-red-600;
+  @apply focus:ring-red-500;
+}
+
+.lifesync-btn-sm {
+  @apply px-3 py-1.5 text-sm;
+}
+
+.lifesync-btn-lg {
+  @apply px-6 py-3 text-lg;
+}
+
+/* Input Components */
+.lifesync-input {
+  @apply w-full px-3 py-2 border border-gray-300 rounded-lg;
+  @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent;
+  @apply transition-all duration-200;
+}
+
+.lifesync-textarea {
+  @apply w-full px-3 py-2 border border-gray-300 rounded-lg;
+  @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent;
+  @apply transition-all duration-200 resize-none;
+}
+
+/* Badge Components */
+.lifesync-badge {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+}
+
+.lifesync-badge-primary {
+  @apply bg-blue-100 text-blue-800;
+}
+
+.lifesync-badge-success {
+  @apply bg-green-100 text-green-800;
+}
+
+.lifesync-badge-warning {
+  @apply bg-yellow-100 text-yellow-800;
+}
+
+.lifesync-badge-danger {
+  @apply bg-red-100 text-red-800;
+}
+
+/* Priority Badges */
+.lifesync-priority-high {
+  @apply bg-red-100 text-red-800 border border-red-200;
+}
+
+.lifesync-priority-medium {
+  @apply bg-yellow-100 text-yellow-800 border border-yellow-200;
+}
+
+.lifesync-priority-low {
+  @apply bg-green-100 text-green-800 border border-green-200;
+}
+
+/* Mood Button Components */
+.lifesync-mood-btn {
+  @apply p-4 rounded-lg transition-all duration-200;
+  @apply flex flex-col items-center gap-2;
+  @apply hover:scale-105 hover:shadow-md;
+  @apply focus:outline-none focus:ring-2 focus:ring-offset-2;
+}
+
+/* Tab Components */
+.lifesync-tabs {
+  @apply flex space-x-1 bg-gray-100 p-1 rounded-lg;
+}
+
+.lifesync-tab {
+  @apply px-3 py-1 rounded-md text-xs font-medium transition-all duration-200;
+  @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500;
+}
+
+.lifesync-tab-active {
+  @apply bg-white text-blue-600 shadow-sm;
+}
+
+.lifesync-tab-inactive {
+  @apply text-gray-600 hover:text-gray-800;
+}
+
+/* Loading States */
+.lifesync-loading {
+  @apply animate-spin;
+}
+
+.lifesync-skeleton {
+  @apply animate-pulse bg-gray-200 rounded;
+}
+
+/* Typography Scale */
+.lifesync-heading-1 {
+  @apply text-4xl font-bold text-gray-800;
+}
+
+.lifesync-heading-2 {
+  @apply text-2xl font-semibold text-gray-800;
+}
+
+.lifesync-heading-3 {
+  @apply text-lg font-semibold text-gray-800;
+}
+
+.lifesync-heading-4 {
+  @apply text-md font-semibold text-gray-800;
+}
+
+.lifesync-body {
+  @apply text-base text-gray-600;
+}
+
+.lifesync-body-sm {
+  @apply text-sm text-gray-600;
+}
+
+.lifesync-caption {
+  @apply text-xs text-gray-500;
+}
+
+/* Status Indicators */
+.lifesync-status-success {
+  @apply text-green-600;
+}
+
+.lifesync-status-warning {
+  @apply text-yellow-600;
+}
+
+.lifesync-status-error {
+  @apply text-red-600;
+}
+
+.lifesync-status-info {
+  @apply text-blue-600;
+}
+
+/* Layout Utilities */
+.lifesync-container {
+  @apply max-w-6xl mx-auto px-4;
+}
+
+.lifesync-grid-main {
+  @apply grid grid-cols-1 lg:grid-cols-3 gap-6;
+}
+
+.lifesync-section {
+  @apply space-y-6;
+}
+
+/* Animation Classes */
+.lifesync-fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.lifesync-slide-in {
+  animation: slideIn 0.3s ease-out;
+}
+
+.lifesync-scale-in {
+  animation: scaleIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { transform: translateY(-10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Responsive Breakpoint Indicators (Development Only) */
+.lifesync-breakpoint-indicator {
+  @apply fixed top-4 right-4 z-50 px-2 py-1 bg-gray-800 text-white text-xs rounded;
+  @apply lg:hidden;
+}
+
+.lifesync-breakpoint-indicator::before {
+  content: 'Mobile';
+}
+
+@media (min-width: 640px) {
+  .lifesync-breakpoint-indicator::before {
+    content: 'SM';
+  }
+}
+
+@media (min-width: 768px) {
+  .lifesync-breakpoint-indicator::before {
+    content: 'MD';
+  }
+}
+
+@media (min-width: 1024px) {
+  .lifesync-breakpoint-indicator::before {
+    content: 'LG';
+  }
+}
+
+@media (min-width: 1280px) {
+  .lifesync-breakpoint-indicator::before {
+    content: 'XL';
+  }
+} 

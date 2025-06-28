@@ -113,9 +113,9 @@ const TaskList: React.FC = () => {
 
   const getPriorityColor = (priority: Task['priority']) => {
     switch (priority) {
-      case 'high': return 'border-l-red-500 bg-red-50';
-      case 'medium': return 'border-l-yellow-500 bg-yellow-50';
-      case 'low': return 'border-l-green-500 bg-green-50';
+      case 'high': return 'border-l-red-500 bg-red-50 lifesync-priority-high';
+      case 'medium': return 'border-l-yellow-500 bg-yellow-50 lifesync-priority-medium';
+      case 'low': return 'border-l-green-500 bg-green-50 lifesync-priority-low';
       default: return 'border-l-gray-500 bg-gray-50';
     }
   };
@@ -125,15 +125,15 @@ const TaskList: React.FC = () => {
   };
 
   return (
-    <div className="space-y-4">
+    <div className="lifesync-section">
       {/* Add Task Button */}
       <div className="flex justify-between items-center">
-        <h3 className="text-lg font-semibold text-gray-700">
+        <h3 className="lifesync-heading-4">
           Today's Tasks ({tasks.filter(t => !t.completed).length} pending)
         </h3>
         <button
           onClick={() => setIsAddingTask(true)}
-          className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition-colors duration-200 flex items-center gap-2"
+          className="lifesync-btn lifesync-btn-primary flex items-center gap-2"
         >
           <span>+</span>
           Add Task
@@ -142,8 +142,8 @@ const TaskList: React.FC = () => {
 
       {/* Add/Edit Task Form */}
       {isAddingTask && (
-        <div className="bg-white border-2 border-blue-200 rounded-lg p-4 space-y-3">
-          <h4 className="font-semibold text-gray-800">
+        <div className="lifesync-card border-2 border-blue-200 rounded-lg p-4 space-y-3 lifesync-slide-in">
+          <h4 className="lifesync-heading-4">
             {editingTaskId ? 'Edit Task' : 'Add New Task'}
           </h4>
           
@@ -155,7 +155,7 @@ const TaskList: React.FC = () => {
                 placeholder="Task title *"
                 value={formData.title}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="lifesync-input"
                 required
               />
             </div>
@@ -167,7 +167,7 @@ const TaskList: React.FC = () => {
                 value={formData.description}
                 onChange={handleInputChange}
                 rows={2}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="lifesync-textarea"
               />
             </div>
             
@@ -176,7 +176,7 @@ const TaskList: React.FC = () => {
                 name="priority"
                 value={formData.priority}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="lifesync-input"
               >
                 <option value="low">Low Priority</option>
                 <option value="medium">Medium Priority</option>
@@ -191,7 +191,7 @@ const TaskList: React.FC = () => {
                 placeholder="Category (optional)"
                 value={formData.category}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="lifesync-input"
               />
             </div>
             
@@ -201,7 +201,7 @@ const TaskList: React.FC = () => {
                 name="dueDate"
                 value={formData.dueDate}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="lifesync-input"
               />
             </div>
           </div>
@@ -209,14 +209,14 @@ const TaskList: React.FC = () => {
           <div className="flex gap-2 justify-end">
             <button
               onClick={resetForm}
-              className="px-4 py-2 text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-200"
+              className="lifesync-btn lifesync-btn-secondary"
             >
               Cancel
             </button>
             <button
               onClick={editingTaskId ? handleUpdateTask : handleAddTask}
               disabled={!formData.title.trim()}
-              className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors duration-200"
+              className="lifesync-btn lifesync-btn-primary"
             >
               {editingTaskId ? 'Update Task' : 'Add Task'}
             </button>
@@ -229,13 +229,13 @@ const TaskList: React.FC = () => {
         {tasks.length === 0 ? (
           <div className="text-center py-8 text-gray-500">
             <div className="text-4xl mb-2">📝</div>
-            <p>No tasks yet. Add your first task to get started!</p>
+            <p className="lifesync-body">No tasks yet. Add your first task to get started!</p>
           </div>
         ) : (
           tasks.map((task) => (
             <div
               key={task.id}
-              className={`border-l-4 rounded-lg p-4 transition-all duration-200 ${getPriorityColor(task.priority)} ${
+              className={`border-l-4 rounded-lg p-4 transition-all duration-200 lifesync-fade-in ${getPriorityColor(task.priority)} ${
                 task.completed ? 'opacity-60' : ''
               }`}
             >
@@ -248,15 +248,15 @@ const TaskList: React.FC = () => {
                     className="mt-1 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                   />
                   <div className="flex-1">
-                    <h4 className={`font-medium ${task.completed ? 'line-through text-gray-500' : 'text-gray-800'}`}>
+                    <h4 className={`lifesync-heading-4 ${task.completed ? 'line-through text-gray-500' : 'text-gray-800'}`}>
                       {task.title}
                     </h4>
                     {task.description && (
-                      <p className={`text-sm mt-1 ${task.completed ? 'text-gray-400' : 'text-gray-600'}`}>
+                      <p className={`lifesync-body-sm mt-1 ${task.completed ? 'text-gray-400' : 'text-gray-600'}`}>
                         {task.description}
                       </p>
                     )}
-                    <div className="flex gap-4 mt-2 text-xs text-gray-500">
+                    <div className="flex gap-4 mt-2 lifesync-caption text-gray-500">
                       <span className="capitalize">Priority: {task.priority}</span>
                       {task.category && <span>Category: {task.category}</span>}
                       {task.dueDate && <span>Due: {formatDate(task.dueDate)}</span>}
@@ -267,13 +267,13 @@ const TaskList: React.FC = () => {
                 <div className="flex gap-2">
                   <button
                     onClick={() => handleEditTask(task)}
-                    className="text-blue-600 hover:text-blue-800 text-sm px-2 py-1 rounded hover:bg-blue-100 transition-colors duration-200"
+                    className="lifesync-btn lifesync-btn-sm lifesync-btn-secondary"
                   >
                     Edit
                   </button>
                   <button
                     onClick={() => handleDeleteTask(task.id)}
-                    className="text-red-600 hover:text-red-800 text-sm px-2 py-1 rounded hover:bg-red-100 transition-colors duration-200"
+                    className="lifesync-btn lifesync-btn-sm lifesync-btn-danger"
                   >
                     Delete
                   </button>
@@ -286,8 +286,8 @@ const TaskList: React.FC = () => {
 
       {/* Task Summary */}
       {tasks.length > 0 && (
-        <div className="mt-6 p-4 bg-gray-50 rounded-lg">
-          <div className="grid grid-cols-3 gap-4 text-center text-sm">
+        <div className="mt-6 p-4 bg-gray-50 rounded-lg lifesync-fade-in">
+          <div className="grid grid-cols-3 gap-4 text-center lifesync-body-sm">
             <div>
               <div className="font-semibold text-gray-600">Total</div>
               <div className="text-lg font-bold text-gray-800">{tasks.length}</div>

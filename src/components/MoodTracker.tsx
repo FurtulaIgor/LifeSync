@@ -109,16 +109,16 @@ const MoodTracker: React.FC = () => {
   };
 
   return (
-    <div className="space-y-4">
+    <div className="lifesync-section">
       {/* Mood Selection Grid */}
       {!isLogging ? (
         <>
           <div className="flex justify-between items-center">
-            <h3 className="text-lg font-semibold text-gray-700">How are you feeling?</h3>
+            <h3 className="lifesync-heading-4">How are you feeling?</h3>
             {todaysMoods.length > 0 && (
               <button
                 onClick={() => setShowHistory(!showHistory)}
-                className="text-sm text-blue-600 hover:text-blue-800 transition-colors duration-200"
+                className="lifesync-btn lifesync-btn-sm lifesync-btn-secondary"
               >
                 {showHistory ? 'Hide' : 'Show'} Today's History
               </button>
@@ -130,18 +130,17 @@ const MoodTracker: React.FC = () => {
               <button
                 key={option.mood}
                 onClick={() => handleMoodSelect(option.mood)}
-                className={`${option.bgColor} ${option.color} p-4 rounded-lg transition-all duration-200 flex flex-col items-center gap-2 hover:scale-105 hover:shadow-md`}
+                className={`lifesync-mood-btn ${option.bgColor} ${option.color} focus:ring-2 focus:ring-blue-500`}
               >
                 <span className="text-2xl">{option.emoji}</span>
-                <span className="text-xs font-medium capitalize">{option.mood}</span>
+                <span className="lifesync-caption font-medium capitalize">{option.mood}</span>
               </button>
             ))}
           </div>
 
-          {/* Today's Summary */}
           {todaysMoods.length > 0 && (
             <div className="bg-gray-50 rounded-lg p-4">
-              <div className="grid grid-cols-2 gap-4 text-center text-sm">
+              <div className="grid grid-cols-2 gap-4 text-center lifesync-body-sm">
                 <div>
                   <div className="font-semibold text-gray-600">Mood Entries Today</div>
                   <div className="text-lg font-bold text-blue-600">{todaysMoods.length}</div>
@@ -156,20 +155,20 @@ const MoodTracker: React.FC = () => {
         </>
       ) : (
         /* Mood Logging Form */
-        <div className="bg-white border-2 border-blue-200 rounded-lg p-4 space-y-4">
+        <div className="lifesync-card border-2 border-blue-200 rounded-lg p-4 space-y-4">
           <div className="flex items-center gap-3">
             <span className="text-3xl">{getMoodOption(selectedMood!).emoji}</span>
             <div>
-              <h4 className="font-semibold text-gray-800 capitalize">
+              <h4 className="lifesync-heading-4 capitalize">
                 Feeling {selectedMood}
               </h4>
-              <p className="text-sm text-gray-600">How intense is this feeling?</p>
+              <p className="lifesync-body-sm">How intense is this feeling?</p>
             </div>
           </div>
 
           {/* Intensity Slider */}
           <div className="space-y-2">
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block lifesync-body-sm font-medium text-gray-700">
               Intensity: {getIntensityText(intensity)} ({intensity}/5)
             </label>
             <input
@@ -180,7 +179,7 @@ const MoodTracker: React.FC = () => {
               onChange={(e) => setIntensity(Number(e.target.value))}
               className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider"
             />
-            <div className="flex justify-between text-xs text-gray-500">
+            <div className="flex justify-between lifesync-caption text-gray-500">
               <span>Very Low</span>
               <span>Low</span>
               <span>Moderate</span>
@@ -191,7 +190,7 @@ const MoodTracker: React.FC = () => {
 
           {/* Notes */}
           <div className="space-y-2">
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block lifesync-body-sm font-medium text-gray-700">
               Notes (optional)
             </label>
             <textarea
@@ -199,7 +198,7 @@ const MoodTracker: React.FC = () => {
               onChange={(e) => setNotes(e.target.value)}
               placeholder="What's making you feel this way? Any thoughts to remember..."
               rows={3}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="lifesync-textarea"
             />
           </div>
 
@@ -207,13 +206,13 @@ const MoodTracker: React.FC = () => {
           <div className="flex gap-2 justify-end">
             <button
               onClick={cancelLogging}
-              className="px-4 py-2 text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-200"
+              className="lifesync-btn lifesync-btn-secondary"
             >
               Cancel
             </button>
             <button
               onClick={handleSaveMood}
-              className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors duration-200"
+              className="lifesync-btn lifesync-btn-primary"
             >
               Save Mood
             </button>
@@ -223,37 +222,34 @@ const MoodTracker: React.FC = () => {
 
       {/* Today's Mood History */}
       {showHistory && todaysMoods.length > 0 && (
-        <div className="space-y-2">
-          <h4 className="font-semibold text-gray-700">Today's Mood History</h4>
-          <div className="space-y-2 max-h-64 overflow-y-auto">
-            {todaysMoods.map((mood) => {
-              const option = getMoodOption(mood.mood);
-              return (
-                <div key={mood.id} className="bg-gray-50 rounded-lg p-3 flex items-start justify-between">
-                  <div className="flex items-start gap-3">
-                    <span className="text-xl">{option.emoji}</span>
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 text-sm">
-                        <span className="font-medium capitalize">{mood.mood}</span>
-                        <span className="text-gray-500">•</span>
-                        <span className="text-gray-600">Intensity: {mood.intensity}/5</span>
-                        <span className="text-gray-500">•</span>
-                        <span className="text-gray-500">{formatTime(mood.timestamp)}</span>
-                      </div>
-                      {mood.notes && (
-                        <p className="text-sm text-gray-600 mt-1">{mood.notes}</p>
-                      )}
+        <div className="bg-gray-50 rounded-lg p-4 lifesync-fade-in">
+          <h4 className="lifesync-heading-4 mb-3">Today's Mood History</h4>
+          <div className="space-y-2 max-h-40 overflow-y-auto">
+            {todaysMoods.slice().reverse().map((mood) => (
+              <div
+                key={mood.id}
+                className="flex items-center justify-between bg-white p-3 rounded-lg"
+              >
+                <div className="flex items-center gap-3">
+                  <span className="text-xl">{getMoodOption(mood.mood).emoji}</span>
+                  <div>
+                    <div className="lifesync-body-sm font-medium capitalize">
+                      {mood.mood}
+                    </div>
+                    <div className="lifesync-caption text-gray-500">
+                      Intensity: {mood.intensity}/5 • {formatTime(mood.timestamp)}
                     </div>
                   </div>
-                  <button
-                    onClick={() => handleDeleteMood(mood.id)}
-                    className="text-red-600 hover:text-red-800 text-xs px-2 py-1 rounded hover:bg-red-100 transition-colors duration-200"
-                  >
-                    Delete
-                  </button>
                 </div>
-              );
-            })}
+                <button
+                  onClick={() => handleDeleteMood(mood.id)}
+                  className="lifesync-btn lifesync-btn-sm lifesync-btn-danger"
+                  title="Delete mood entry"
+                >
+                  🗑️
+                </button>
+              </div>
+            ))}
           </div>
         </div>
       )}
@@ -262,8 +258,8 @@ const MoodTracker: React.FC = () => {
       {todaysMoods.length === 0 && !isLogging && (
         <div className="text-center py-6 text-gray-500">
           <div className="text-4xl mb-2">🌟</div>
-          <p>Track your first mood of the day!</p>
-          <p className="text-sm">Select how you're feeling above to get started.</p>
+          <p className="lifesync-body">Track your first mood of the day!</p>
+          <p className="lifesync-body-sm">Select how you're feeling above to get started.</p>
         </div>
       )}
     </div>

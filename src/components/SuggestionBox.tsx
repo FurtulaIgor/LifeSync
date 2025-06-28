@@ -266,17 +266,17 @@ const SuggestionBox: React.FC = () => {
   };
 
   return (
-    <div className="space-y-4">
+    <div className="lifesync-section">
       {/* Tab Navigation */}
-      <div className="flex space-x-1 bg-gray-100 p-1 rounded-lg overflow-hidden">
+      <div className="lifesync-tabs overflow-hidden">
         {Object.keys(suggestions).map((tab) => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab as keyof SuggestionData)}
             className={`flex-1 min-w-0 py-2 px-1 rounded-md text-xs font-medium transition-all duration-200 ${
               activeTab === tab
-                ? 'bg-white text-blue-600 shadow-sm'
-                : 'text-gray-600 hover:text-gray-800'
+                ? 'lifesync-tab-active'
+                : 'lifesync-tab-inactive'
             }`}
           >
             <div className="flex flex-col items-center justify-center gap-0.5">
@@ -289,46 +289,46 @@ const SuggestionBox: React.FC = () => {
 
       {/* Refresh Button */}
       <div className="flex justify-between items-center">
-        <h3 className="text-sm font-semibold text-gray-700">
+        <h3 className="lifesync-heading-4">
           {getTabLabel(activeTab)} Tips
         </h3>
         <button
           onClick={generateSuggestions}
           disabled={isLoading}
-          className="text-xs text-blue-600 hover:text-blue-800 transition-colors duration-200 disabled:opacity-50"
+          className="lifesync-btn lifesync-btn-sm lifesync-btn-secondary"
         >
           🔄 Refresh
         </button>
       </div>
 
       {/* Suggestions List */}
-      <div className="space-y-3 max-h-96 overflow-y-auto">
+      <div className="space-y-3">
         {isLoading ? (
           <div className="text-center py-4 text-gray-500">
-            <div className="animate-spin text-2xl mb-2">⚡</div>
-            <p className="text-sm">Analyzing your data...</p>
+            <div className="lifesync-loading text-2xl mb-2">⚡</div>
+            <p className="lifesync-body-sm">Analyzing your data...</p>
           </div>
         ) : suggestions[activeTab].length > 0 ? (
           suggestions[activeTab].map((suggestion) => (
             <div
               key={suggestion.id}
-              className="bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-100 rounded-lg p-4 space-y-2"
+              className="bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-100 rounded-lg p-4 space-y-2 lifesync-fade-in"
             >
-              <h4 className="font-semibold text-gray-800 text-sm">
+              <h4 className="lifesync-heading-4 text-sm">
                 {suggestion.title}
               </h4>
-              <p className="text-gray-600 text-sm leading-relaxed">
+              <p className="lifesync-body-sm leading-relaxed">
                 {suggestion.message}
               </p>
               {suggestion.actionable && suggestion.action && (
                 <div className="bg-white bg-opacity-50 rounded-md p-2 border-l-4 border-blue-400">
-                  <p className="text-xs font-medium text-blue-700">
+                  <p className="lifesync-caption text-blue-700 font-medium">
                     💡 Action: {suggestion.action}
                   </p>
                 </div>
               )}
               {suggestion.basedOnMood && (
-                <div className="text-xs text-purple-600 font-medium">
+                <div className="lifesync-caption text-purple-600 font-medium">
                   Based on your {suggestion.basedOnMood} mood
                 </div>
               )}
@@ -337,8 +337,8 @@ const SuggestionBox: React.FC = () => {
         ) : (
           <div className="text-center py-6 text-gray-500">
             <div className="text-2xl mb-2">💡</div>
-            <p className="text-sm">No suggestions available.</p>
-            <p className="text-xs mt-1">Try adding tasks or logging your mood!</p>
+            <p className="lifesync-body-sm">No suggestions available.</p>
+            <p className="lifesync-caption mt-1">Try adding tasks or logging your mood!</p>
           </div>
         )}
       </div>
